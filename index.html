@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -44,7 +45,10 @@
     <script>
         document.getElementById('connect-wallet').addEventListener('click', async () => {
             try {
-                const tonConnect = new TonConnect();
+                const tonConnect = new TonConnect({
+                    manifestUrl: 'https://rngeryes.github.io/web3/tonconnect-manifest.json' // Укажите свой URL
+                });
+
                 await tonConnect.connect();
                 document.getElementById('message').innerText = 'Wallet connected successfully!';
             } catch (error) {
