@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Wallet</title>
+    <script src="https://unpkg.com/@tonconnect/sdk"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            margin-top: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <button id="connect-wallet">Connect Wallet</button>
+    <div class="message" id="message"></div>
+
+    <script>
+        document.getElementById('connect-wallet').addEventListener('click', async () => {
+            try {
+                const tonConnect = new TonConnect();
+                await tonConnect.connect();
+                document.getElementById('message').innerText = 'Wallet connected successfully!';
+            } catch (error) {
+                console.error('Error connecting wallet:', error);
+                document.getElementById('message').innerText = 'Failed to connect wallet.';
+            }
+        });
+    </script>
+</body>
+</html>
